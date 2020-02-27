@@ -1,0 +1,7 @@
+{% extends 'index.html' %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/content.css') }}">
+    <div id="content">
+        {% block data %}{% endblock %}
+    </div>
+{% endblock %}

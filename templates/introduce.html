@@ -1,0 +1,89 @@
+{% extends 'content.html' %}
+{% block data %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/introduce.css') }}">
+    <div class="ui breadcrumb">
+        <a href="/" class="section">Home</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">Introduce</div>
+    </div>
+    <h1>안녕하세요.</h1>
+    <div class="ui segment">
+        <div class="ui items">
+            <div class="item">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='img/YW_001.png') }}" alt="체고조넘">
+                </div>
+                <div class="content">
+                    <a class="header" title="실제 집은 전북 정읍에 있습니다.">동작구민</a>
+                    <div class="meta">
+                        <span>songyw9812@gmail.com</span>
+                    </div>
+                    <div class="meta">
+                        <span>우리은행 1002-456-671732</span>
+                    </div>
+                    <div class="description">
+                        <p>
+                            하는거 없는 동작구민입니다. 사실 집은 동작구에 없습니다. 취미로 사진을 종종 찍어요!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>감사한 분들</h1>
+    <div class="ui segment">
+        <div class="ui relaxed list">
+            <div class="item">
+                <i class="user icon"></i>
+                <div class="content">
+                    <div class="header">Ruby</div>
+                    <div class="description">Front-End와 Flask Wiki를 제공해 주었습니다.
+                        그리고 Source Code의 여러 가지 개선점을 알려 주었습니다.
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <i class="user icon"></i>
+                <div class="content">
+                    <div class="header">agurimon</div>
+                    <div class="description">Flask 입문에 큰 도움이 되었습니다.</div>
+                </div>
+            </div>
+            <div class="item">
+                <i class="user icon"></i>
+                <div class="content">
+                    <div class="header">gomjellie</div>
+                    <div class="description">이상한 삽질을 하고 있을때 방향을 제대로 잡아준 분입니다.</div>
+                </div>
+            </div>
+            <div class="item">
+                <i class="user icon"></i>
+                <div class="content">
+                    <div class="header">parkmint</div>
+                    <div class="description">첨부파일 문제로 고민하고 있을때 같이 고민해주신 분입니다.</div>
+                </div>
+            </div>
+            <div class="item">
+                <i class="user icon"></i>
+                <div class="content">
+                    <div class="header">0G</div>
+                    <div class="description">제 캐리커쳐를 그려준 분입니다.</div>
+                </div>
+            </div>
+            <div class="item">
+                <i class="laptop icon"></i>
+                <div class="content">
+                    <div class="header">내 노트북</div>
+                    <div class="description">무수한 삽질을 버텨준 내 노트북에 건배를</div>
+                </div>
+            </div>
+            <div class="item">
+                <i class="server icon"></i>
+                <div class="content">
+                    <div class="header">내 서버</div>
+                    <div class="description">낮은 성능에도 불구하고 서버를 지탱해주고 있는 고마운 기기입니다.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

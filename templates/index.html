@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+
+</head>
+<body>
+<div class="ui top fixed menu" id="nav">
+    <a href="/" class="item">Main</a>
+    <a href="/introduce" class="item">Introduce</a>
+    <a href="/nclab" class="item">NCLab</a>
+    <a href="/info" class="item">Information</a>
+</div>
+    {% block content %}{% endblock %}
+</body>
+</html>
