@@ -5,10 +5,23 @@
         <i class="right angle icon divider"></i>
         <div class="active section">NCLab</div>
     </div>
-    <div class="ui placeholder segment">
-        <div class="ui icon header">
-            <i class="wrench icon"></i>
-            해당 기능은 현재 구현 중에 있습니다.
-        </div>
-    </div>
+    <h1>강의자료</h1>
+    <table class="ui celled table">
+    <thead>
+    <tr>
+        <th class="center aligned">강의명</th>
+        <th class="center aligned">학기</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for doc in documents %}
+        <tr>
+            <td onClick="location.href='./nclab/lec/{{ doc['id'] }}'">
+                {{ doc['lecture'] }}
+            </td>
+            <td>{{ doc['semester'] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
 {% endblock %}

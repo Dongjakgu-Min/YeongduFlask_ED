@@ -1,4 +1,6 @@
 from flask import render_template
+from routes.nclab import *
+from models.nclab import *
 from app import app
 
 
@@ -8,8 +10,11 @@ def introduce():
 
 
 @app.route('/nclab')
-def nclab():
-    return render_template('nclab.html')
+def nclab_main():
+    lectures = Lectures.query.all()
+    result = [x.as_dict() for x in lectures]
+
+    return render_template('nclab.html', documents=result)
 
 
 @app.route('/info')
