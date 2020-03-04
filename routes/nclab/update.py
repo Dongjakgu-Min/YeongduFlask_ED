@@ -41,7 +41,8 @@ def nclab_semester(semester):
             board_docs = Board(link)
             docs = board_docs.get_document()
             for doc in docs:
-                new_doc = Documents(doc['title'], doc['link'], link.split('_')[-1], doc['date'], elem.id)
+                new_doc = Documents(doc['title'], doc['link'], link.split('_')[-1],
+                                    elem.semester.split('-')[0] + '-' + doc['date'], elem.id)
 
                 doc_check = Documents.query.filter_by(link=doc['link']).all()
 

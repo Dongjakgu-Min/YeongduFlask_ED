@@ -5,6 +5,25 @@
         <i class="right angle icon divider"></i>
         <div class="active section">NCLab</div>
     </div>
+    <h1>최근 작성된 글</h1>
+    <table class="ui celled table">
+    <thead>
+    <tr>
+        <th class="center aligned">제목</th>
+        <th class="center aligned">강의명</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for doc in recent %}
+        <tr>
+            <td onClick="location.href='{{ doc['link'] }}'">
+                {{ doc['title'] }}
+            </td>
+            <td>{{ doc['lec_name'] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
     <h1>강의자료</h1>
     <table class="ui celled table">
     <thead>

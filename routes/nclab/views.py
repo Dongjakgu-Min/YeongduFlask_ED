@@ -12,5 +12,6 @@ def lecture_main(lec_id):
     result = [x.as_dict() for x in documents]
 
     lecture = Lectures.query.filter_by(id=lec_id).all()
+    name = lecture[0].lecture + ' (' + lecture[0].semester + ')'
 
-    return render_template('nclab/lecture.html', documents=result, name=lecture[0].lecture)
+    return render_template('nclab/lecture.html', documents=result, name=name)

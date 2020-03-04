@@ -51,12 +51,13 @@ class Documents(Base.Model):
         self.lecture_id = lecture_id
 
         try:
-            self.datetime = datetime.datetime.strptime(create_time, '%m-%d')
+            self.datetime = datetime.datetime.strptime(create_time, '%Y-%m-%d')
         except ValueError:
             self.datetime = datetime.datetime.today()
 
     def as_dict(self):
         result = {x.name: getattr(self, x.name) for x in self.__table__.columns}
+        result['datetime'] = result['datetime'].split(' ')[0]
         result['lec_name'] = self.lecture.lecture if self.lecture else None
         result['lec_semester'] = self.lecture.semester if self.lecture else None
         return result
