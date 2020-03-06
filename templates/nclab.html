@@ -11,6 +11,7 @@
     <tr>
         <th class="center aligned">제목</th>
         <th class="center aligned">강의명</th>
+        <th class="center aligned">업로드 날짜</th>
     </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
                 {{ doc['title'] }}
             </td>
             <td>{{ doc['lec_name'] }}</td>
+            <td>{{ doc['datetime'] }}</td>
         </tr>
     {% endfor %}
     </tbody>
