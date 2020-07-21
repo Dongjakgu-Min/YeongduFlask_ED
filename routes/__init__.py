@@ -18,8 +18,3 @@ def nclab_main():
     recent_doc = [x.as_dict() for x in doc]
 
     return render_template('nclab.html', documents=result, recent=recent_doc)
-
-
-@app.route('/info')
-def info():
-    return render_template('info.html')
