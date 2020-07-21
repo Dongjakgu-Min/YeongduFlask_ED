@@ -15,13 +15,33 @@
     </tr>
     </thead>
     <tbody>
-    {% for doc in recent %}
+    {% for doc in recentdoc %}
         <tr>
             <td onClick="location.href='{{ doc['link'] }}'">
                 {{ doc['title'] }}
             </td>
             <td>{{ doc['lec_name'] }}</td>
             <td>{{ doc['datetime'] }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    <h1>최근 올라온 강의자료</h1>
+    <table class="ui celled table">
+    <thead>
+    <tr>
+        <th class="center aligned">파일</th>
+        <th class="center aligned">강의명</th>
+        <th class="center aligned">학기</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for attach in recentattach %}
+        <tr>
+            <td onclick="location.href='./nclab/download/{{ attach['id'] }}'">{{ attach['filename'] }}
+            </td>
+            <td>{{ attach['lec_name'] }}</td>
+            <td>{{ attach['lec_semester'] }}</td>
         </tr>
     {% endfor %}
     </tbody>
@@ -38,7 +58,7 @@
     {% for doc in documents %}
         <tr>
             <td onClick="location.href='./nclab/lec/{{ doc['id'] }}'">
-                {{ doc['lecture'] }}
+                {{ doc['lecture_name'] }}
             </td>
             <td>{{ doc['semester'] }}</td>
         </tr>
