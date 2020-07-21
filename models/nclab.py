@@ -12,7 +12,7 @@ class Lectures(Base.Model):
     id = Base.Column(Base.Integer, primary_key=True, autoincrement=True)
 
     semester = Base.Column(Base.String(7), nullable=False)
-    lecture = Base.Column(Base.String(20), nullable=False)
+    lecture_name = Base.Column(Base.String(20), nullable=False)
     qa_link = Base.Column(Base.String(100), nullable=False)
     lec_link = Base.Column(Base.String(100), nullable=False)
     noti_link = Base.Column(Base.String(100), nullable=False)
@@ -20,7 +20,7 @@ class Lectures(Base.Model):
 
     def __init__(self, lecture, semester, noti_link, lec_link, qa_link, rep_link):
         self.semester = semester
-        self.lecture = lecture
+        self.lecture_name = lecture
         self.qa_link = qa_link
         self.lec_link = lec_link
         self.noti_link = noti_link
@@ -58,7 +58,7 @@ class Documents(Base.Model):
     def as_dict(self):
         result = {x.name: getattr(self, x.name) for x in self.__table__.columns}
         result['datetime'] = result['datetime'].split(' ')[0]
-        result['lec_name'] = self.lecture.lecture if self.lecture else None
+        result['lec_name'] = self.lecture.lecture_name if self.lecture else None
         result['lec_semester'] = self.lecture.semester if self.lecture else None
         return result
 
@@ -91,6 +91,6 @@ class Attachments(Base.Model):
 
     def as_dict(self):
         result = {x.name: getattr(self, x.name) for x in self.__table__.columns}
-        result['lec_name'] = self.lecture.name if self.lecture else None
+        result['lec_name'] = self.lecture.lecture_name if self.lecture else None
         result['lec_semester'] = self.lecture.semester if self.lecture else None
         return result

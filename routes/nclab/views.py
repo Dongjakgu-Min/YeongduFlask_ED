@@ -9,10 +9,9 @@ api = Blueprint('nclab_views', __name__)
 @api.route('/<lec_id>')
 def lecture_main(lec_id):
     documents = Documents.query.order_by(Documents.datetime.desc()).filter_by(lecture_id=lec_id).all()
-    attachments = Attachments.query.filter_by(lecture_id=lec_id).all()
     result = [x.as_dict() for x in documents]
 
     lecture = Lectures.query.filter_by(id=lec_id).all()
-    name = lecture[0].lecture + ' (' + lecture[0].semester + ')'
+    name = lecture[0].lecture_name + ' (' + lecture[0].semester + ')'
 
     return render_template('nclab/lecture.html', documents=result, name=name)

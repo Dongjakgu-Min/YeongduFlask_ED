@@ -17,13 +17,13 @@ def nclab_update():
         args = [lec['name'], lec['semester'], lec['공지사항'], lec['강의자료'], lec['Q & A'], lec['Report']]
         new_lecture = Lectures(*args)
 
-        lecture_check = Lectures.query.filter_by(lecture=lec['name'], semester=lec['semester']).all()
+        lecture_check = Lectures.query.filter_by(lecture_name=lec['name'], semester=lec['semester']).all()
         add_element(lecture_check, new_lecture)
 
     return 'update complete', 200
 
 
-@api.route('/<semester>', methods=["POST"])
+@api.route('/semester/<semester>', methods=["POST"])
 def nclab_semester(semester):
     if semester is None:
         return 404
