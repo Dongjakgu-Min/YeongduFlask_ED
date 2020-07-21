@@ -61,3 +61,36 @@ class Documents(Base.Model):
         result['lec_name'] = self.lecture.lecture if self.lecture else None
         result['lec_semester'] = self.lecture.semester if self.lecture else None
         return result
+
+
+class Attachments(Base.Model):
+    __table_name__ = 'nclab_attachments'
+    __table_args__ = {'mysql_collate': 'utf8_general_ci'}
+
+    id = Base.Column(Base.Integer, primary_key=True, autoincrement=True)
+
+    lecture_id = Base.Column(Base.Integer, ForeignKey('lectures.id'), nullable=False)
+    document_id = Base.Column(Base.Integer, ForeignKey('documents.id'), nullable=False)
+
+    document = relationship("Documents", backref=backref('nclab_documents', order_by=id))
+    lecture = relationship("Lectures", backref=backref('nclab_comments', order_by=id))
+
+    filename = Base.Column(Base.String(100), nullable=False)
+    name = Base.Column(Base.String(100), nullable=False)
+    datetime = Base.Column(DateTime, nullable=False)
+
+    link = Base.Column(Base.String(300), nullable=False)
+
+    def __init__(self, filename, create_time, link, lecture_id, document_id):
+        self.filename = filename
+        self.datetime = datetime.datetime.strptime(create_time.split(': ')[-1], '%Y-%m-%d %H:%M:%S')
+        self.name = datetime.datetime.utcnow().strftime('%Y%m%d%H%M%S%f') + '.' + filename.split('.')[-1]
+        self.link = link
+        self.lecture_id = lecture_id
+        self.document_id = document_id
+
+    def as_dict(self):
+        result = {x.name: getattr(self, x.name) for x in self.__table__.columns}
+        result['lec_name'] = self.lecture.name if self.lecture else None
+        result['lec_semester'] = self.lecture.semester if self.lecture else None
+        return result
