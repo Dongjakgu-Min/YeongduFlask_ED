@@ -1,5 +1,5 @@
 from flask import render_template
-from routes.nclab import *
+from routes import nclab, gallery, auth
 from models.nclab import *
 from app import app
 

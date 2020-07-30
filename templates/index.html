@@ -13,6 +13,15 @@
     <a href="/" class="item">Main</a>
     <a href="/introduce" class="item">Introduce</a>
     <a href="/nclab" class="item">NCLab</a>
+    <a href="/gallery" class="item">Gallery</a>
+    <div class="right menu">
+        {% if session['login'] is none or false %}
+            <a href="/auth/login" class="item">Log In</a>
+        {% else %}
+            <a href="/auth/logout" class="item">Log Out</a>
+        {% endif %}
+
+    </div>
 </div>
     {% block content %}{% endblock %}
 </body>

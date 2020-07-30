@@ -9,23 +9,32 @@
     </div>
     <h1>강의자료</h1>
     {% if documents|length > 0 %}
-        <div class="ui relaxed divided list">
-            {% for doc in documents %}
-                <div class="item">
-                    <i class="large file alternate outline middle aligned icon"></i>
-                    <div class="content">
-                        <a href="{{ doc['link'] }}" class="content">{{ doc['title'] }}</a>
-                        <div class="description">{{ doc['datetime'] }}</div>
+        <div class="ui top attached tabular menu">
+            <div class="active item">강의 게시글</div>
+            <div class="item">자료</div>
+        </div>
+        <div class="ui bottom attached tab segment">
+            <div class="ui relaxed divided list">
+                {% for doc in documents %}
+                    <div class="item">
+                        <i class="large file alternate outline middle aligned icon"></i>
+                        <div class="content">
+                            <a href="{{ doc['link'] }}" class="content">{{ doc['title'] }}</a>
+                            <div class="description">{{ doc['datetime'] }}</div>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
+            <div class="ui bottom attached active tab segment">
+                <p>aaa</p>
+            </div>
         </div>
     {% else %}
         <div class="ui placeholder segment">
-        <div class="ui icon header">
-            <i class="file alternate outline icon"></i>
-            이 강의는 아직 문서가 작성되지 않았습니다.
-        </div>
+            <div class="ui icon header">
+                <i class="file alternate outline icon"></i>
+                이 강의는 아직 문서가 작성되지 않았습니다.
+            </div>
         </div>
     {% endif %}
 {% endblock %}
