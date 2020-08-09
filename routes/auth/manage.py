@@ -58,7 +58,7 @@ def signup():
 
 @api.route("/logout")
 def sign_out():
-    session["username"] = None
-    session["login"] = None
-    session["admin"] = None
+    session.pop("username", None)
+    session.pop("login", None)
+    session.pop("admin", None)
     return redirect("/")

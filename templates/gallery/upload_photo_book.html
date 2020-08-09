@@ -1,0 +1,27 @@
+{% extends 'content.html' %}
+{% block data %}
+    <h1>사진 업로드</h1>
+    <h2>PhotoBook</h2>
+    <form class="ui form" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file"/>
+        <div class="field">
+            <label>제목</label>
+            <input type="text" name="title" placeholder="제목">
+        </div>
+        <div class="field">
+            <label>날짜</label>
+            <input type="text" name="date" placeholder="날짜">
+        </div>
+        <input class="ui button" type="submit"/>
+    </form>
+    <div class="ui middle aligned divided list">
+{#    {% for item in items %}#}
+{#        <div class="right floated content">#}
+{#            <div class="ui button">삭제</div>#}
+{#        </div>#}
+{#        <div content="content">#}
+{#            {{ item }}#}
+{#        </div>#}
+{#    {% endfor %}#}
+    </div>
+{% endblock %}

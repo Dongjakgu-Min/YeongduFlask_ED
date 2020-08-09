@@ -1,0 +1,7 @@
+{% extends "content.html" %}
+{% block data %}
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file[]" multiple="">
+        <button class="ui button">사진 업로드</button>
+    </form>
+{% endblock %}

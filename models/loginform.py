@@ -1,9 +1,9 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length
 
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     id = StringField('ID', [
         DataRequired(message='ID는 필수 항목입니다.'),
 
@@ -14,7 +14,7 @@ class LoginForm(Form):
     submit = SubmitField('로그인')
 
 
-class SignupForm(Form):
+class SignupForm(FlaskForm):
     id = StringField('ID', [
         DataRequired(message='ID는 필수 항목입니다.'),
         Length(min=6, message='%(min)d글자 이상 입력해주세요.')

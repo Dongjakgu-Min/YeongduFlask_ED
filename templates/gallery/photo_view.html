@@ -1,0 +1,14 @@
+{% extends 'content.html' %}
+{% block data %}
+    <h1>{{ title.title }}</h1>
+
+    {% if session['admin'] is true %}
+        <button class="ui button" onclick="location.href='{{ title.id }}/upload/photo'">사진 업로드</button>
+    {% endif %}
+
+    {% for img in photo %}
+        <img class="ui fluid image" src={{ url_for('static', filename=img.img) }}>
+    {% endfor %}
+    <br>
+    <button class="ui button" onclick="location.href='/gallery'">목록 보기</button>
+{% endblock %}
