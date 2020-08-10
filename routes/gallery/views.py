@@ -23,7 +23,7 @@ def photos(photo_book_id):
     return render_template("gallery/photo_view.html", title=title, photo=photo)
 
 
-@api.route("/upload/photo_book", methods=['GET', 'POST'])
+@api.route("photo_book/upload", methods=['GET', 'POST'])
 def upload_photo_book():
     if "login" not in session.keys() or session["admin"] is False:
         return "Invalid URL", 404
@@ -46,7 +46,7 @@ def upload_photo_book():
         return render_template('gallery/upload_photo_book.html')
 
 
-@api.route("/<photo_book_id>/upload/photo", methods=['GET', 'POST'])
+@api.route("<photo_book_id>/photo/upload", methods=['GET', 'POST'])
 def upload_photo(photo_book_id):
     if "login" not in session.keys() or session["admin"] is False:
         return "Invalid URL", 404
@@ -75,3 +75,22 @@ def upload_photo(photo_book_id):
                 return exc.SQLAlchemyError, 500
 
         return redirect('/')
+
+
+@api.route('/photo/<photo_id>/delete', methods=['POST'])
+def delete(photo_id):
+    if "login" not in session.keys() or session["admin"] is False:
+        return "Invalid URL", 404
+
+    if request.method == 'POST':
+        item = Photo.query.filter_by(id=int(photo_id)).one()
+        Path.unlink(Path('static') / item.img)
+        photo_book = item.photo_book_id
+
+        try:
+            Base.session.delete(item)
+            Base.session.commit()
+        except exc.SQLAlchemyError:
+            return exc.SQLAlchemyError, 500
+
+        return redirect("/gallery/" + str(photo_book))

@@ -32,7 +32,8 @@ class Photo(Base.Model):
     id = Base.Column(Base.Integer, primary_key=True, autoincrement=True)
     img = Base.Column(Base.String(200), nullable=False)
     filename = Base.Column(Base.String(200), nullable=False)
-    photo_book_id = Base.Column(Base.Integer)
+    photo_book_id = Base.Column(Base.Integer, ForeignKey('photo_book.id'))
+    photo_book = relationship("PhotoBook", backref=backref('photo', order_by=id))
     created_at = Base.Column(Base.DateTime, nullable=False)
 
     def __init__(self, img, filename, photo_book_id):

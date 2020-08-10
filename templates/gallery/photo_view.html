@@ -3,11 +3,17 @@
     <h1>{{ title.title }}</h1>
 
     {% if session['admin'] is true %}
-        <button class="ui button" onclick="location.href='{{ title.id }}/upload/photo'">사진 업로드</button>
+        <button class="ui button" onclick="location.href='{{ title.id }}/photo/upload'">사진 업로드</button>
     {% endif %}
 
     {% for img in photo %}
-        <img class="ui fluid image" src={{ url_for('static', filename=img.img) }}>
+        <form class="ui form" method="post" action="photo/{{ img.id }}/delete">
+            <img class="ui fluid image" src={{ url_for('static', filename=img.img) }}>
+            {% if session['admin'] is true %}
+                <button class="ui red button">사진 삭제</button>
+            {% endif %}
+        </form>
+        <br>
     {% endfor %}
     <br>
     <button class="ui button" onclick="location.href='/gallery'">목록 보기</button>

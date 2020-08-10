@@ -8,8 +8,8 @@
     <h1>갤러리</h1>
     <p>동작구민이 직접 찍은 사진들입니다. 모바일 데이터로 접속하면 데이터가 작살납니다. 이미 들어오셨다면 이미 늦었으니 마음껏 보세요.</p>
     {% if session['admin'] is true %}
-        <button class="ui button" onclick="location.href='./upload/photo_book'">사진첩 만들기</button>
-        <button class="ui button" onclick="location.href='./upload/photo'">사진 업로드</button>
+        <button class="ui button" onclick="location.href='.photo_book/upload'">사진첩 만들기</button>
+        <button class="ui button" onclick="location.href='.photo/upload'">사진 업로드</button>
     {% endif %}
     <div class="img-container">
         <div class="ui four stackable cards">
