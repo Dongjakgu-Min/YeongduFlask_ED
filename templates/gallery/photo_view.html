@@ -7,12 +7,7 @@
     {% endif %}
 
     {% for img in photo %}
-        <form class="ui form" method="post" action="photo/{{ img.id }}/delete">
-            <img class="ui fluid image" src={{ url_for('static', filename=img.img) }}>
-            {% if session['admin'] is true %}
-                <button class="ui red button">사진 삭제</button>
-            {% endif %}
-        </form>
+        <img class="ui fluid image" src={{ url_for('static', filename=img.img) }}>
         <br>
     {% endfor %}
     <br>

@@ -52,7 +52,8 @@ def upload_photo(photo_book_id):
         return "Invalid URL", 404
 
     if request.method == 'GET':
-        return render_template('gallery/upload_photo.html')
+        photo = Photo.query.filter_by(photo_book_id=photo_book_id)
+        return render_template('gallery/upload_photo.html', photo=photo)
 
     if request.method == 'POST':
         files = request.files.getlist("file[]")
@@ -74,7 +75,7 @@ def upload_photo(photo_book_id):
             except exc.SQLAlchemyError:
                 return exc.SQLAlchemyError, 500
 
-        return redirect('/')
+        return redirect('./upload')
 
 
 @api.route('/photo/<photo_id>/delete', methods=['POST'])
@@ -93,4 +94,4 @@ def delete(photo_id):
         except exc.SQLAlchemyError:
             return exc.SQLAlchemyError, 500
 
-        return redirect("/gallery/" + str(photo_book))
+        return redirect("/gallery/" + str(photo_book) + '/photo/upload')
