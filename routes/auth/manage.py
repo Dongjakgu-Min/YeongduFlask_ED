@@ -1,4 +1,4 @@
-from flask import render_template, redirect, session, Blueprint, request
+from flask import render_template, redirect, session, Blueprint, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from models.loginform import LoginForm, SignupForm
@@ -19,7 +19,8 @@ def login():
 
         check = Users.query.filter_by(username=username).first()
         if check is None:
-            return redirect('/')
+            flash('존재하지 않는 아이디입니다.')
+            return redirect('/auth/login')
 
         if check_password_hash(check.password, password):
             session["login"] = True
@@ -30,6 +31,7 @@ def login():
             session["username"] = username
             return redirect("/")
         else:
+            flash('비밀번호가 틀렸습니다.')
             return redirect("/auth/login")
 
 
