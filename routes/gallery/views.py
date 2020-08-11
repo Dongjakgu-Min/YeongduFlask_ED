@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session, redirect
+from flask import Blueprint, render_template, request, session, redirect, flash
 from app import app, Base
 from models.gallery import Photo, PhotoBook
 from datetime import datetime
@@ -52,7 +52,7 @@ def upload_photo(photo_book_id):
         return "Invalid URL", 404
 
     if request.method == 'GET':
-        photo = Photo.query.filter_by(photo_book_id=photo_book_id)
+        photo = Photo.query.filter_by(photo_book_id=photo_book_id).all()
         return render_template('gallery/upload_photo.html', photo=photo)
 
     if request.method == 'POST':
@@ -62,7 +62,9 @@ def upload_photo(photo_book_id):
             file_type = file.content_type
 
             if file_type != 'image/jpeg':
-                return 'Invalid Type'
+                flash('잘못된 형식의 파일입니다.')
+                photo = Photo.query.filter_by(photo_book_id=photo_book_id).all()
+                return render_template('gallery/upload_photo.html', photo=photo)
 
             filename = datetime.utcnow().strftime('%Y%m%d%H%M%S%f') + '.' + file.filename.split('.')[-1]
             file.save(Path('static') / 'photo' / secure_filename(filename))

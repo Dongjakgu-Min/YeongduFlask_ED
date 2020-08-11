@@ -10,10 +10,10 @@
     <h1>강의자료</h1>
     {% if documents|length > 0 %}
         <div class="ui top attached tabular menu">
-            <div class="active item">강의 게시글</div>
-            <div class="item">자료</div>
+            <a class="active item" data-tab="documents">강의 게시글</a>
+            <a class="item" data-tab="material">자료</a>
         </div>
-        <div class="ui bottom attached tab segment">
+        <div class="ui bottom attached active tab segment" data-tab="documents">
             <div class="ui relaxed divided list">
                 {% for doc in documents %}
                     <div class="item">
@@ -25,9 +25,9 @@
                     </div>
                 {% endfor %}
             </div>
-            <div class="ui bottom attached active tab segment">
-                <p>aaa</p>
-            </div>
+        </div>
+        <div class="ui bottom attached tab segment" data-tabs="material">
+            <p>aaa</p>
         </div>
     {% else %}
         <div class="ui placeholder segment">
@@ -37,4 +37,9 @@
             </div>
         </div>
     {% endif %}
+    <script>
+        $('h1').onclick(function () {
+            $('h1').hide()
+        });
+    </script>
 {% endblock %}

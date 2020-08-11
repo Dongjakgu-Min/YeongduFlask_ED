@@ -21,11 +21,11 @@ def lecture_main(lec_id):
 def lecture_page(lec_id, page):
     page = int(page)
 
-    documents = Documents.query.order_by(Documents.datetime.desc()).filter_by(lecture_id=lec_id).all()
+    documents = Documents.query.filter(15 * (page - 1) < Documents.id)\
+        .filter(Documents.id < page * 15)
     result = [x.as_dict() for x in documents]
-    result = result[10 * (page - 1):10 * page]
 
-    lecture = Lectures.query.filter_by(id=lec_id).all()
-    name = lecture[0].lecture_name + ' (' + lecture[0].semester + ')'
+    lecture = Lectures.query.filter_by(id=lec_id).one()
+    name = lecture.lecture_name + ' (' + lecture.semester + ')'
 
-    return render_template('nclab/lecture.html', documents=result, name=name)
+    return render_template('nclab/lecture.html', documents=result, name=name, page=int(page))
