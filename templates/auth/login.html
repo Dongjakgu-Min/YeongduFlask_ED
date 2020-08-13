@@ -1,0 +1,31 @@
+{% extends 'content.html' %}
+{% block data %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <script src="{{ url_for('static', filename='script/login.js') }}"></script>
+    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <!--{{ message }}-->
+                    <script>
+                        alert('{{message}}')   //이 부분이 중요
+                    </script>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    <div id="login">
+        <div class="ui segment">
+            <h2>로그인</h2>
+            <form id="loginForm" class="ui form" method="POST">
+                {{ form.csrf_token }}
+                <div class="field">
+                    {{ form.id.label }} {{ form.id() }}
+                </div>
+                <div class="field">
+                    {{ form.pw.label }} {{ form.pw() }}
+                </div>
+                {{ form.submit(class_="ui button") }}
+            </form>
+        </div>
+        <a href="signup">아직 회원이 아니시라면 여기를 눌러 가입해주세요.</a>
+    </div>
+{% endblock %}

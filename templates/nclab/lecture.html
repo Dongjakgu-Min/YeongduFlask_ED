@@ -7,8 +7,8 @@
         <i class="right angle icon divider"></i>
         <div class="active section">{{ name }}</div>
     </div>
-    <h1>강의자료</h1>
-    {% if documents|length > 0 %}
+    <h1>강의게시글</h1>
+    {% if documents|count > 0 %}
         <div class="ui relaxed divided list">
             {% for doc in documents %}
                 <div class="item">
@@ -20,12 +20,16 @@
                 </div>
             {% endfor %}
         </div>
+        {{ pagination.links }}
     {% else %}
         <div class="ui placeholder segment">
-        <div class="ui icon header">
-            <i class="file alternate outline icon"></i>
-            이 강의는 아직 문서가 작성되지 않았습니다.
-        </div>
+            <div class="ui icon header">
+                <i class="file alternate outline icon"></i>
+                이 강의는 아직 문서가 작성되지 않았습니다.
+            </div>
         </div>
     {% endif %}
+    <script>
+        $('.menu .item').tab();
+    </script>
 {% endblock %}

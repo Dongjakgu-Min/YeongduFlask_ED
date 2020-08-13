@@ -1,0 +1,32 @@
+{% extends 'content.html' %}
+{% block data %}
+    <div class="ui breadcrumb">
+        <a href="/" class="section">Home</a>
+        <i class="right angle icon divider"></i>
+        <a href="/nclab" class="section">NCLab</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">{{ name }}</div>
+    </div>
+    <h1>강의자료</h1>
+    {% if attachments|count > 0 %}
+        <div class="ui relaxed divided list">
+            {% for attach in attachments %}
+                <div class="item">
+                    <i class="large save outline middle aligned icon"></i>
+                    <div class="content">
+                        <a href='/nclab/download/{{ attach['id'] }}' class="content">{{ attach['filename'] }}</a>
+                        <div class="description">{{ attach['datetime'] }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {{ pagination.links }}
+    {% else %}
+        <div class="ui placeholder segment">
+            <div class="ui icon header">
+                <i class="save outline icon"></i>
+                이 강의는 아직 첨부파일이 게시되지 않았습니다.
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

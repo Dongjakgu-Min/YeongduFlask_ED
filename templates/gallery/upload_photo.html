@@ -1,0 +1,34 @@
+{% extends "content.html" %}
+{% block data %}
+    <h1>사진 업로드</h1>
+    <form class="ui form" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file[]" multiple="">
+        <button class="ui button">사진 업로드</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <!--{{ message }}-->
+                <script>
+                    alert('{{message}}')   //이 부분이 중요
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h2>업로드 목록</h2>
+    <div class="ui middle aligned divided list">
+        {% for pic in photo %}
+            <div class="item">
+                <form class="ui form" method="post" action="/gallery/photo/{{ pic.id }}/delete">
+                    <img class="ui small image" src={{ url_for('static', filename=pic.img) }}>
+                    <div class="right floated content">
+                        <button class="ui red button">사진 삭제</button>
+                    </div>
+                </form>
+                <div class="content">
+                    {{ pic.filename }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

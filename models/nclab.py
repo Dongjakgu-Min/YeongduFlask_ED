@@ -51,7 +51,9 @@ class Documents(Base.Model):
         self.lecture_id = lecture_id
 
         try:
-            self.datetime = datetime.datetime.strptime(create_time, '%Y-%m-%d')
+            self.datetime = str(datetime.datetime.strptime(create_time, '%Y-%m-%d'))
+            self.datetime = self.datetime.split(' ')[0]
+
         except ValueError:
             self.datetime = datetime.datetime.today()
 

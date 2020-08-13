@@ -1,0 +1,24 @@
+
+#login {
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 10%
+}
+
+@media only screen and (max-width: 768px) {
+    #login {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #login {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+.ui.segment {
+    padding: 15%;
+}

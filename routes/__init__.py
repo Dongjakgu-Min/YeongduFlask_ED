@@ -1,5 +1,5 @@
 from flask import render_template
-from routes.nclab import *
+from routes import nclab, gallery, auth
 from models.nclab import *
 from app import app
 
@@ -20,4 +20,4 @@ def nclab_main():
     attach = Attachments.query.order_by(Attachments.datetime.desc()).limit(10).all()
     recent_attach = [x.as_dict() for x in attach]
 
-    return render_template('nclab.html', documents=result, recentdoc=recent_doc, recentattach=recent_attach)
+    return render_template('nclab/nclab.html', documents=result, recentdoc=recent_doc, recentattach=recent_attach)

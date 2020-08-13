@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
+from pathlib import Path
 
 from config import DATABASE_URI
 
@@ -37,6 +38,12 @@ signal.signal(signal.SIGTERM, signal_handler)
 signal.signal(signal.SIGABRT, signal_handler)
 signal.signal(signal.SIGSEGV, signal_handler)
 signal.signal(signal.SIGHUP, signal_handler)
+
+
+if (Path('static') / 'photo').exists() is False:
+    Path.mkdir(Path('static') / 'photo')
+if (Path('static') / 'photo_book').exists() is False:
+    Path.mkdir(Path('static') / 'photo_book')
 
 
 @app.route('/')
