@@ -52,15 +52,21 @@
     <tr>
         <th class="center aligned">강의명</th>
         <th class="center aligned">학기</th>
+        <th class="center aligned">강의게시글</th>
+        <th class="center aligned">강의자료</th>
     </tr>
     </thead>
     <tbody>
     {% for doc in documents %}
         <tr>
-            <td onClick="location.href='./nclab/lec/{{ doc['id'] }}'">
-                {{ doc['lecture_name'] }}
-            </td>
+            <td>{{ doc['lecture_name'] }}</td>
             <td>{{ doc['semester'] }}</td>
+            <td class="center aligned" onclick="location.href='./nclab/lec/{{ doc['id'] }}/document'">
+                <i class="file icon"></i>
+            </td>
+            <td class="center aligned" onclick="location.href='./nclab/lec/{{ doc['id'] }}/attachment'">
+                <i class="download icon"></i>
+            </td>
         </tr>
     {% endfor %}
     </tbody>
