@@ -7,68 +7,93 @@
     </div>
     <h1>최근 작성된 글</h1>
     <table class="ui celled table">
-    <thead>
-    <tr>
-        <th class="center aligned">제목</th>
-        <th class="center aligned">강의명</th>
-        <th class="center aligned">업로드 날짜</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for doc in recentdoc %}
+        <thead>
         <tr>
-            <td onClick="location.href='{{ doc['link'] }}'">
-                {{ doc['title'] }}
-            </td>
-            <td>{{ doc['lec_name'] }}</td>
-            <td>{{ doc['datetime'] }}</td>
+            <th class="center aligned">제목</th>
+            <th class="center aligned">강의명</th>
+            <th class="center aligned">업로드 날짜</th>
         </tr>
-    {% endfor %}
-    </tbody>
+        </thead>
+        <tbody>
+        {% for doc in recentdoc %}
+            <tr>
+                <td onClick="location.href='{{ doc['link'] }}'">
+                    {{ doc['title'] }}
+                </td>
+                <td>{{ doc['lec_name'] }}</td>
+                <td>{{ doc['datetime'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
     <h1>최근 올라온 강의자료</h1>
     <table class="ui celled table">
-    <thead>
-    <tr>
-        <th class="center aligned">파일</th>
-        <th class="center aligned">강의명</th>
-        <th class="center aligned">학기</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for attach in recentattach %}
+        <thead>
         <tr>
-            <td onclick="location.href='./nclab/download/{{ attach['id'] }}'">{{ attach['filename'] }}
-            </td>
-            <td>{{ attach['lec_name'] }}</td>
-            <td>{{ attach['lec_semester'] }}</td>
+            <th class="center aligned">파일</th>
+            <th class="center aligned">강의명</th>
+            <th class="center aligned">학기</th>
         </tr>
-    {% endfor %}
-    </tbody>
+        </thead>
+        <tbody>
+        {% for attach in recentattach %}
+            <tr>
+                <td onclick="location.href='./nclab/download/{{ attach['id'] }}'">{{ attach['filename'] }}
+                </td>
+                <td>{{ attach['lec_name'] }}</td>
+                <td>{{ attach['lec_semester'] }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
     <h1>강의자료</h1>
     <table class="ui celled table">
-    <thead>
-    <tr>
-        <th class="center aligned">강의명</th>
-        <th class="center aligned">학기</th>
-        <th class="center aligned">강의게시글</th>
-        <th class="center aligned">강의자료</th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for doc in documents %}
+        <thead>
         <tr>
-            <td>{{ doc['lecture_name'] }}</td>
-            <td>{{ doc['semester'] }}</td>
-            <td class="center aligned" onclick="location.href='./nclab/lec/{{ doc['id'] }}/document'">
-                <i class="file icon"></i>
-            </td>
-            <td class="center aligned" onclick="location.href='./nclab/lec/{{ doc['id'] }}/attachment'">
-                <i class="download icon"></i>
-            </td>
+            <th class="center aligned">강의명</th>
+            <th class="center aligned">학기</th>
+            <th class="center aligned">강의게시글</th>
+            <th class="center aligned">강의자료</th>
         </tr>
-    {% endfor %}
-    </tbody>
+        </thead>
+        <tbody>
+        {% for doc in documents %}
+            <tr>
+                <td>{{ doc['lecture_name'] }}</td>
+                <td>{{ doc['semester'] }}</td>
+                <td class="center aligned" onclick="location.href='./nclab/lec/{{ doc['id'] }}/document'">
+                    <i class="file icon"></i>
+                </td>
+                <td class="center aligned" onclick="location.href='./nclab/lec/{{ doc['id'] }}/attachment'">
+                    <i class="download icon"></i>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
+    <h1>알림 설정</h1>
+    {% if session['login'] == true %}
+    <form class="ui form" method="post">
+        {% for doc in documents %}
+            <div class="ui checkbox">
+                <input type="checkbox" name={{ doc['id'] }}
+                        {% for check in checked %}
+                            {{ 'checked="checked"' if check['lecture_id'] == doc['id'] else ''}}
+                        {% endfor %}
+                >
+                <label>{{ doc['lecture_name'] }} - ({{ doc['semester'] }})</label>
+            </div>
+            <br>
+        {% endfor %}
+        <br>
+        <input class="ui button" type="submit" value="제출">
+    </form>
+    {% else %}
+        <div class="ui placeholder segment" onclick="location.href='/auth/signup'">
+            <div class="ui icon header">
+                <i class="address card outline icon"></i>
+                이 기능은 회원만 사용 가능합니다.
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}

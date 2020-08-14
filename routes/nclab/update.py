@@ -3,8 +3,10 @@ from tools.SNCP.lecture import lecture
 from tools.SNCP.board import Board
 from tools.SNCP.document import Document
 from models.nclab import *
+from models.mail import Mails
 from sqlalchemy import exc
-from tools.Database import add_element, add_attachment
+from tools.Database import add_element, add_attachment, add_document
+from tools.Email.send import send_mail
 
 api = Blueprint('nclab_update', __name__)
 
@@ -35,13 +37,7 @@ def nclab_semester(semester):
         for link in links:
             board_docs = Board(link)
             docs = board_docs.get_document()
-            for doc in docs:
-                new_doc = Documents(doc['title'], doc['link'], link.split('_')[-1],
-                                    elem.semester.split('-')[0] + '-' + doc['date'], elem.id)
-
-                doc_check = Documents.query.filter_by(link=doc['link']).all()
-
-                add_element(doc_check, new_doc)
+            add_document(docs, elem)
 
     return 'update complete', 200
 
