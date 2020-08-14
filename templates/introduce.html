@@ -7,24 +7,26 @@
         <div class="active section">Introduce</div>
     </div>
     <h1>안녕하세요.</h1>
-    <div class="ui segment">
-        <div class="ui items">
-            <div class="item">
-                <div class="image">
-                    <img src="{{ url_for('static', filename='img/YW_001.png') }}" alt="체고조넘">
-                </div>
-                <div class="content">
-                    <a class="header" title="숭실대 근처에서 자취하고 있습니다.">동작구민</a>
-                    <div class="meta">
-                        <span>songyw9812@gmail.com</span>
+    <div id="profile-container">
+        <div class="ui segment" id="main-profile">
+            <div class="ui items">
+                <div class="item">
+                    <div class="image">
+                        <img id="profile-image" src="{{ url_for('static', filename='img/YW_001.png') }}" alt="체고조넘">
                     </div>
-                    <div class="meta">
-                        <span>우리은행 1002-456-671732</span>
-                    </div>
-                    <div class="description">
-                        <p>
-                            하는거 없는 동작구민입니다. 취미로 사진을 종종 찍어요!
-                        </p>
+                    <div class="content">
+                        <a class="header" title="숭실대 근처에서 자취하고 있습니다.">동작구민</a>
+                        <div class="meta">
+                            <span>songyw9812@gmail.com</span>
+                        </div>
+                        <div class="meta">
+                            <span>우리은행 1002-456-671732</span>
+                        </div>
+                        <div class="description">
+                            <p>
+                                하는거 없는 동작구민입니다. 취미로 사진을 종종 찍어요!
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,4 +111,56 @@
             </div>
         </div>
     </div>
+
+    <script>
+    let count = 0;
+
+    function easterEgg() {
+        // print easter egg message
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        console.log("You've found an easter egg!!!!!!!!!!!!!!!!");
+        console.log("Enjoy your egg!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        // change image url
+        let imgUrl = "{{ url_for('static', filename='img/egg.gif') }}";
+        $('#profile-image').attr('src', imgUrl);
+
+        // change menu
+        let menu = $('.fixed.menu');
+        menu.attr('class', 'ui bottom fixed menu inverted');
+
+        let menuItem = $('.fixed.menu > .item');
+        menuItem.html('Egg');
+
+        let content = $('#content');
+        content.css('margin-top', '10px');
+
+        // add profile
+        let newProfile = $('#main-profile').clone().appendTo('#profile-container');
+        newProfile = $(newProfile);
+        newProfile.attr('id', 'sub-profile');
+
+        let apuUrl = "{{ url_for('static', filename='img/apu.gif') }}";
+        let newImage = newProfile.find('img');
+        newImage.attr('src', apuUrl);
+
+        let newHeader = newProfile.find('.header');
+        newHeader.attr('title', '정읍출신');
+        newHeader.html('초루비');
+
+        let newMeta = newProfile.find('.meta');
+
+        $(newMeta[0]).html('sungjaecho97@gmail.com');
+        $(newMeta[1]).html('우리, 핸드폰번호. 아는 사람만 보내세요.');
+
+        let newDescription = newProfile.find('.description');
+        newDescription.html('오~~~~~~~');
+    }
+
+    $('#profile-image').click(function (e) {
+        count++;
+        if (count === 5) easterEgg();
+    })
+    </script>
 {% endblock %}

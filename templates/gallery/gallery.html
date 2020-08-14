@@ -5,10 +5,15 @@
             margin: 10px;
         }
     </style>
+    <div class="ui breadcrumb">
+        <a href="/" class="section">Home</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section">Gallery</div>
+    </div>
     <h1>갤러리</h1>
     <p>동작구민이 직접 찍은 사진들입니다. 모바일 데이터로 접속하면 데이터가 작살납니다. 이미 들어오셨다면 이미 늦었으니 마음껏 보세요.</p>
     {% if session['admin'] == true %}
-        <button class="ui button" onclick="location.href='.photo_book/upload'">사진첩 만들기</button>
+        <button class="ui button" onclick="location.href='./photo_book/upload'">사진첩 만들기</button>
     {% endif %}
     <div class="img-container">
         <div class="ui four stackable cards">

@@ -1,8 +1,6 @@
 from flask import render_template, Blueprint, request
 from flask_paginate import Pagination, get_page_parameter
-from routes import nclab
 from models.nclab import *
-from app import app, Base
 
 api = Blueprint('nclab_views', __name__)
 
