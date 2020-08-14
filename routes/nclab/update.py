@@ -37,7 +37,7 @@ def nclab_semester(semester):
         for link in links:
             board_docs = Board(link)
             docs = board_docs.get_document()
-            add_document(docs, elem)
+            add_document(docs, elem, link)
 
     return 'update complete', 200
 

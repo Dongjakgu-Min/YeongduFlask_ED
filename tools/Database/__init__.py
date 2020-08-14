@@ -34,7 +34,7 @@ def add_attachment(check, elem):
             writer.write(file.content)
 
 
-def add_document(docs, elem):
+def add_document(docs, elem, link):
     for doc in docs:
         new_doc = Documents(doc['title'], doc['link'], link.split('_')[-1],
                             elem.semester.split('-')[0] + '-' + doc['date'], elem.id)
