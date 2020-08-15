@@ -4,6 +4,7 @@
 
     {% if session['admin'] is true %}
         <button class="ui button" onclick="location.href='{{ title.id }}/photo/upload'">사진 업로드</button>
+        <br>
     {% endif %}
 
     {% for img in photo %}

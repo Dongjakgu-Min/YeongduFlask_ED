@@ -8,7 +8,7 @@ from requests import session
 
 
 def add_element(check, elem):
-    if len(check) is 0:
+    if len(check) == 0:
         try:
             Base.session.add(elem)
             Base.session.commit()
@@ -17,7 +17,7 @@ def add_element(check, elem):
 
 
 def add_attachment(check, elem):
-    if len(check) is 0:
+    if len(check) == 0:
         try:
             Base.session.add(elem)
             Base.session.commit()
@@ -41,7 +41,7 @@ def add_document(docs, elem, link):
 
         doc_check = Documents.query.filter_by(link=doc['link']).all()
 
-        if len(doc_check) is 0:
+        if len(doc_check) == 0:
             try:
                 Base.session.add(new_doc)
                 Base.session.commit()

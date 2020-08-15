@@ -12,14 +12,14 @@ class PhotoBook(Base.Model):
     id = Base.Column(Base.Integer, primary_key=True, autoincrement=True)
     representation = Base.Column(Base.String(200), nullable=False)
     title = Base.Column(Base.String(50), nullable=False)
-    content = Base.Column(Base.String(100), nullable=False)
+    shoot_date = Base.Column(Base.String(100), nullable=False)
     created_at = Base.Column(Base.DateTime, nullable=False)
 
-    def __init__(self, representation, title, content):
+    def __init__(self, representation, title, shoot_date):
         self.representation = representation
-        self.created_at = datetime.datetime.utcnow()
+        self.created_at = datetime.datetime.strptime(shoot_date, '%Y%m%d')
         self.title = title
-        self.content = content
+        self.shoot_date = shoot_date
 
     def as_dict(self):
         return {x.name: getattr(self, x.name) for x in self.__table__.columns}
