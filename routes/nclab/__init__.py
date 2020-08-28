@@ -15,7 +15,7 @@ app.register_blueprint(download.api, url_prefix='/nclab/download')
 @app.route('/nclab', methods=['GET', 'POST'])
 def nclab_main():
     if request.method == 'GET':
-        lectures = Lectures.query.all()
+        lectures = Lectures.query.order_by(Lectures.semester.desc()).all()
         result = [x.as_dict() for x in lectures]
 
         doc = Documents.query.order_by(Documents.datetime.desc()).limit(10).all()
